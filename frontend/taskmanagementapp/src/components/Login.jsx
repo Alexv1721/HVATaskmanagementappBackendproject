@@ -46,7 +46,7 @@ else{
     if (!validateForm()) return;
 
     try {
-      const user = await axios.post('https://hvataskmanagementappbackendproject.onrender.com//user/login', { email: uname, password: pwd });
+      const user = await axios.post('https://hvataskmanagementappbackendproject.onrender.com/user/login', { email: uname, password: pwd });
       console.log(user);
       
       localStorage.setItem('taskstoken', user.data.token);
