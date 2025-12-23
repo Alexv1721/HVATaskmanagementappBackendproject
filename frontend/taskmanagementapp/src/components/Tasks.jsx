@@ -10,7 +10,7 @@ function Tasks() {
     {
          async function fetchTasks() {
 try{
-const res=await axios.get("http://localhost:5000/tasks",{headers:{Authorization:localStorage.getItem("taskstoken")}})
+const res=await axios.get("https://hvataskmanagementappbackendproject.onrender.com/tasks",{headers:{Authorization:localStorage.getItem("taskstoken")}})
 setTasks(res.data.data)
 }
 catch(err){
@@ -28,7 +28,7 @@ nav("/login")
          async function fetchTasks() {
 try{
    
-      const roleResponse = await axios.get('http://localhost:5000/user/role', {
+      const roleResponse = await axios.get('https://hvataskmanagementappbackendproject.onrender.com/user/role', {
         headers: { Authorization: localStorage.getItem('taskstoken') },
       });
       nav(roleResponse.data.data==='admin'?'/admin':'/');

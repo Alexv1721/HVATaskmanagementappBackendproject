@@ -40,7 +40,7 @@ else{
 
   async function handleBackend() {
     try {
-      const response = await axios.post('http://localhost:5000/user/register', formData);
+      const response = await axios.post('https://hvataskmanagementappbackendproject.onrender.com/user/register', formData);
       navigate('/login');
     } catch (error) {
       if (error.response && error.response.data.message) {

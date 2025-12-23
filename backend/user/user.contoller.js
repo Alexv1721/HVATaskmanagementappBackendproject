@@ -5,10 +5,9 @@ const bcrypt = require('bcryptjs');
 const createUser = asyncErrorhandler(
     async (req, res) => {
         const { username, email, password,role} = req.body;
-        if(role=="admin"){
-          return res.status(400).json({mgs:'unotharized access.Admin account can not be created',statuscode:400})  
-        }
-        console.log(username,email);
+        // if(role=="admin"){
+        //   return res.status(400).json({mgs:'unotharized access.Admin account can not be created',statuscode:400})  
+        // }
         
         const hashedPassword = await bcrypt.hash(password, 10);
         const newUser = await userService.createUser(username, email, hashedPassword,role);

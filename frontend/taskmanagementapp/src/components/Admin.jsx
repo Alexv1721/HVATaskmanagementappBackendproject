@@ -10,7 +10,7 @@ function Admin() {
     {
          async function fetchTasks() {
 try{
-const res=await axios.get("http://localhost:5000/tasks",{headers:{Authorization:localStorage.getItem("taskstoken")}})
+const res=await axios.get("https://hvataskmanagementappbackendproject.onrender.com/tasks",{headers:{Authorization:localStorage.getItem("taskstoken")}})
 setTasks(res.data.data)
 }
 catch(err){
