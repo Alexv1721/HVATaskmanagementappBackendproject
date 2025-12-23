@@ -11,14 +11,7 @@ const Register = () => {
   const [confirmpassword, setConfirmPassword] = useState('');
   const [formData, setFormData] = useState({ username:'',email:'',password:'',confirmpassword:'',role:'normal'});
   const [errors, setErrors] = useState({username:'',email:'',password:'',confirmpassword:''});
-useEffect(()=>{
-if(localStorage.getItem("taskstoken")){
-  navigate("/")
-}
-else{
-    navigate("/login")
-}
-},[])
+
 
   const validateForm = () => {
     setErrors({ username: '', email: '', password: '', confirmpassword: '' });

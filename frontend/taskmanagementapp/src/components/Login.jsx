@@ -91,7 +91,7 @@ else{
       </div>
       <button className='lbn' onClick={handleLogin}>Login</button>
       <div className='login-links'>
-        <p>Don't have an account? <a href="/reg">Register</a></p>
+        <p>Don't have an account? <a href="/register">Register</a></p>
       </div>
     </div>
   );
