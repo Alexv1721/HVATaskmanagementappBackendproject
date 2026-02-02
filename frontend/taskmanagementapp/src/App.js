@@ -10,11 +10,9 @@ function App() {
     <BrowserRouter>
       <div className="App">
   <Routes>
-  <Route path='/'element={<ProtectedRoute allowedRole="user"><Tasks /></ProtectedRoute>}/>
+  <Route path='/'element={<ProtectedRoute allowedRole="normal"><Tasks /></ProtectedRoute>}/>
     <Route path='/admin' element={<ProtectedRoute allowedRole="admin"><Admin /></ProtectedRoute>
           }/>
-    <Route path='/' element={<Tasks/>}/>
-        <Route path='/admin' element={<Admin/>}/>
     <Route path='/login' element={<Login/>}/>
     <Route path='register' element={<Register/>}/>
   </Routes>

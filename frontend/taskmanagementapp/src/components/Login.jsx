@@ -6,6 +6,9 @@ import { useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
+
+const nav=useNavigate()
+
   const [uname, setUname] = useState('');
   const [pwd, setPwd] = useState('');
   const [err, setErr] = useState('');
@@ -13,16 +16,26 @@ const Login = () => {
   const emailRef = useRef(null);
   const navigate=useNavigate('')
   const passwordRef = useRef(null);
-useEffect(()=>{
-if(localStorage.getItem("taskstoken")){
-  navigate("/")
+ useEffect(()=>
+    {
+         async function fetchTasks() {
+try{
+   
+      const roleResponse = await axios.get('https://hvataskmanagementappbackendproject.onrender.com/user/role', {
+        headers: { Authorization: localStorage.getItem('taskstoken') },
+      });
+      nav(roleResponse.data.data==='admin'?'/admin':'/');
 }
-else{
-    navigate("/login")
+catch(err){
+localStorage.removeItem("taskstoken")
+console.log(err);
+localStorage.clear()
+nav("/login")
 }
-},[])
 
-
+}
+    fetchTasks()}
+       ,[])
 
   const validateForm = () => {
     setErr('');
@@ -47,15 +60,17 @@ else{
 
     try {
       const user = await axios.post('https://hvataskmanagementappbackendproject.onrender.com/user/login', { email: uname, password: pwd });
-      console.log(user);
+
       
       localStorage.setItem('taskstoken', user.data.token);
       const roleResponse = await axios.get('https://hvataskmanagementappbackendproject.onrender.com/user/role', {
-        headers: { Authorization: localStorage.getItem('taskstoken') },
+        headers:{ Authorization:localStorage.getItem('taskstoken') },
       });
-      navigate(roleResponse.data.data==='admin'?'/admin':'/');
-    } catch (error) {
-     
+      localStorage.setItem('role',roleResponse.data.data)
+      console.log(roleResponse.data);
+      navigate(roleResponse.data.data==='admin' ? '/admin' : '/');
+
+    } catch (error) {     
       if (error.response && error.response.data.message) {
         if (error.response.data.message.includes('Invalid email')) setErr('Invalid email');
         else if (error.response.data.message.includes('Invalid password')) setPerr('Invalid password');
