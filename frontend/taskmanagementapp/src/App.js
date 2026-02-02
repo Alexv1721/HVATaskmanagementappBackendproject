@@ -4,12 +4,15 @@ import Tasks from './components/Tasks';
 import Login from './components/Login';
 import Register from './components/Register';
 import Admin from './/components/Admin'
+import ProtectedRoute from './components/ProtectedRoute'
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
   <Routes>
-
+  <Route path='/'element={<ProtectedRoute allowedRole="user"><Tasks /></ProtectedRoute>}/>
+    <Route path='/admin' element={<ProtectedRoute allowedRole="admin"><Admin /></ProtectedRoute>
+          }/>
     <Route path='/' element={<Tasks/>}/>
         <Route path='/admin' element={<Admin/>}/>
     <Route path='/login' element={<Login/>}/>

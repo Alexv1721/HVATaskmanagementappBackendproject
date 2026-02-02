@@ -16,7 +16,7 @@ setTasks(res.data.data)
 catch(err){
 localStorage.removeItem("taskstoken")
 console.log(err);
-
+localStorage.clear()
 nav("/login")
 }
 
@@ -36,7 +36,7 @@ try{
 catch(err){
 localStorage.removeItem("taskstoken")
 console.log(err);
-
+localStorage.clear()
 nav("/login")
 }
 
@@ -45,6 +45,7 @@ nav("/login")
        ,[])
   const handleLogout = () => {
     localStorage.removeItem("taskstoken");
+    localStorage.clear()
     nav("/login");
   };
   return (
